@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const port = process.env.PORT1 || 5555;
+const port = process.env.PORT || 5555;
 
 app.listen(port, ()=>{
     console.log(`Server up and running successfully at port ${port}.`);
