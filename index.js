@@ -10,6 +10,9 @@ app.use(cors());
 app.use(express.json());
 
 const port = process.env.PORT || 5555;
+const url = process.env.URL;
+const api_key = process.env.API_KEY;
+const host = process.env.HOST;
 
 app.listen(port, ()=>{
     console.log(`Server up and running successfully at port ${port}.`);
@@ -21,12 +24,12 @@ app.post('/run', (req, res)=>{
 
     const executeOptions = {
       method: 'POST',
-      url: 'https://judge0-ce.p.rapidapi.com/submissions',
+      url: url,
       params: {base64_encoded: 'true', fields: '*'},
       headers: {
         'Content-Type': 'application/json',
-        'X-RapidAPI-Key': '6962acde68msh61513431cdeb116p1d9f8djsnb1268a51e9a8',
-        'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
+        'X-RapidAPI-Key': api_key,
+        'X-RapidAPI-Host': host
       },
       data: req.body.jsonData
     };
@@ -35,11 +38,11 @@ app.post('/run', (req, res)=>{
     }).then(()=>{
         const receiveOptions = {
             method: 'GET',
-            url: `https://judge0-ce.p.rapidapi.com/submissions/${token}`,
+            url: `${url}/${token}`,
             params: {base64_encoded: 'true', fields: '*'},
             headers: {
-                'X-RapidAPI-Key': '6962acde68msh61513431cdeb116p1d9f8djsnb1268a51e9a8',
-                'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
+                'X-RapidAPI-Key': api_key,
+                'X-RapidAPI-Host': host
             }
         };
         axios.request(receiveOptions).then(function (response) {
