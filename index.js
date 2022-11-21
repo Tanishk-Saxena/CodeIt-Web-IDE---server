@@ -6,7 +6,11 @@ config();
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+    origin: ["http://localhost:3000", "https://code-it-web-ide-client.vercel.app"]
+}
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 const port = process.env.PORT || 5555;
