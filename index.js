@@ -7,7 +7,8 @@ config();
 const app = express();
 
 const corsOptions = {
-    origin: ["http://localhost:3000", "https://code-it-web-ide-client.vercel.app"]
+    origin: ["http://localhost:3000", "https://code-it-web-ide-client.vercel.app"],
+    methods: ['POST', 'GET']
 }
 
 app.use(cors(corsOptions));
