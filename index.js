@@ -6,7 +6,7 @@ config();
 
 const app = express();
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 
 const port = process.env.PORT || 5555;
