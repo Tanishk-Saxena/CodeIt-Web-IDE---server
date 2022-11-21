@@ -22,6 +22,8 @@ app.listen(port, ()=>{
     console.log(`Server up and running successfully at port ${port}.`);
 })
 
+app.options('*', cors());
+
 app.post('/run', (req, res)=>{
     let output = {};
     let token;
