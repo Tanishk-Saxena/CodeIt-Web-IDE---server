@@ -7,19 +7,11 @@ config();
 const app = express();
 
 const corsOptions = {
-    origin: ["http://localhost:3000", "https://code-it-web-ide-client.vercel.app"],
-    methods: ['POST', 'GET']
+    origin: '*'
 }
 
 app.use(cors(corsOptions));
 app.use(express.json());
-
-app.use((req, res, next) => {
-    res.append('Access-Control-Allow-Origin', ["http://localhost:3000", "https://code-it-web-ide-client.vercel.app"]);
-    res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.append('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-});
 
 const port = process.env.PORT || 5555;
 const url = process.env.URL;
