@@ -36,28 +36,30 @@ app.post('/run', (req, res)=>{
     axios.request(executeOptions).then(function async (response) {
         token = response.data.token;
     }).then(()=>{
-        const receiveOptions = {
-            method: 'GET',
-            url: `${url}/${token}`,
-            params: {base64_encoded: 'true', fields: '*'},
-            headers: {
-                'X-RapidAPI-Key': api_key,
-                'X-RapidAPI-Host': host
-            }
-        };
-        axios.request(receiveOptions).then(function (response) {
-            output = {
-                stdout: response.data.stdout,
-                stderr: response.data.stderr,
-                compile_output: response.data.compile_output,
-                exit_code: response.data.exit_code,
-                time: response.data.time,
-                memory: response.data.memory
-            }
-            res.send(output);
-        }).catch(function (error) {
-            console.error(error);
-        });
+        setTimeout(() => {
+            const receiveOptions = {
+                method: 'GET',
+                url: `${url}/${token}`,
+                params: {base64_encoded: 'true', fields: '*'},
+                headers: {
+                    'X-RapidAPI-Key': api_key,
+                    'X-RapidAPI-Host': host
+                }
+            };
+            axios.request(receiveOptions).then(function (response) {
+                output = {
+                    stdout: response.data.stdout,
+                    stderr: response.data.stderr,
+                    compile_output: response.data.compile_output,
+                    exit_code: response.data.exit_code,
+                    time: response.data.time,
+                    memory: response.data.memory
+                }
+                res.send(output);
+            }).catch(function (error) {
+                console.error(error);
+            });
+        }, 5000);
     }).catch(function (error) {
         console.error(error);
     });
